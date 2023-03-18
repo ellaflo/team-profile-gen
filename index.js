@@ -5,10 +5,12 @@
 // const path = require("path");
 // const fs = require("fs");
 
+const path = require("path");
+
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
-const render = require("./src/page-template.js");
+// const render = require("./src/page-template.js");
 
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
@@ -188,6 +190,10 @@ function buildTeam() {
           createIntern();
           break;
         case 'Finish building the team':
+            const html = render(teamMembers);
+          fs.writeFile(outputPath, html, (err) =>
+            err ? console.error(err) : console.log('Successfully generated team.html!')
+          );
           break;
       }
     });
